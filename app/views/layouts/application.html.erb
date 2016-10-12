@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TIU</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= link_to "Home page", home_index_path(@home)%>
+
+
+  <%= link_to "link to user page", users_path(@user)%>
+
+  <%#= link_to "link to calendars", user_calendar_path(@user)%>
+
+  <%= link_to "link to challenges", challenges_path(@challenge)%>
+
+  end of nav
+  <%#= link_to "link to food log", new_users_path(@user)%>
+  </br>
+    </br>
+  <%#= link_to "link to exercise log", new_users_path(@user)%>
+
+
+
+<%= yield %>
+
+</body>
+</html>
