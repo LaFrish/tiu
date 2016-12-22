@@ -8,3 +8,4 @@
 Challenge.destroy_all
 
 tiu31 = Challenge.create({challenge_name: "TIU31"})
+lookforlove = Challenge.create({challenge_name: "LookForLove"})
