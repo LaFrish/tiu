@@ -8,7 +8,6 @@ class CreateCalendars < ActiveRecord::Migration
       t.string :img_url
       t.string :data_type
       t.string :tag
-      t.references :user, index: true
       t.references :challenge, index: true
 
       t.timestamps

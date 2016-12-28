@@ -10,9 +10,12 @@
 
    def create
      @user = User.create!(user_params)
-
-     redirect_to users_path(@user)
+     if @user.save
+     redirect_to users_path(@user), :notice => "Signed Up"
+   else
+     render "new"
    end
+  end
 
    def show
      @user = User.find(params[:id])
@@ -25,7 +28,7 @@
    def update
      @user = User.find(params[:id])
      @user = update(user_params)
-     
+
      redirect_to user_path(@user)
    end
 
@@ -37,6 +40,6 @@
 
    private
    def user_params
-     params.require(:user).permit(:name, :username, :challenge_id, :calendar_id, :created_at, :updated_at)
+     params.require(:user).permit(:email, :password, :password_confirmation, :name, :username, :challenge_id, :calendar_id, :created_at, :updated_at)
    end
  end

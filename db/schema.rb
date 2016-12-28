@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008230114) do
+ActiveRecord::Schema.define(version: 20161228194425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20161008230114) do
     t.string   "data_type"
     t.string   "tag"
     t.integer  "challenge_id"
-    t.integer  "user_id"
     t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(version: 20161008230114) do
 
   add_index "exercises", ["calendar_id"], name: "index_exercises_on_calendar_id", using: :btree
   add_index "exercises", ["challenge_id"], name: "index_exercises_on_challenge_id", using: :btree
-  add_index "exercises", ["user_id"], name: "index_exercises_on_user_id", using: :btree
 
   create_table "foods", force: :cascade do |t|
     t.string   "food_name"
@@ -60,7 +58,6 @@ ActiveRecord::Schema.define(version: 20161008230114) do
     t.string   "data_type"
     t.string   "tag"
     t.integer  "challenge_id"
-    t.integer  "user_id"
     t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -68,14 +65,12 @@ ActiveRecord::Schema.define(version: 20161008230114) do
 
   add_index "foods", ["calendar_id"], name: "index_foods_on_calendar_id", using: :btree
   add_index "foods", ["challenge_id"], name: "index_foods_on_challenge_id", using: :btree
-  add_index "foods", ["user_id"], name: "index_foods_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.date     "date"
     t.string   "data_type"
     t.string   "tag"
     t.integer  "challenge_id"
-    t.integer  "user_id"
     t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,29 +78,21 @@ ActiveRecord::Schema.define(version: 20161008230114) do
 
   add_index "photos", ["calendar_id"], name: "index_photos_on_calendar_id", using: :btree
   add_index "photos", ["challenge_id"], name: "index_photos_on_challenge_id", using: :btree
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.string   "name"
     t.string   "username"
-    t.integer  "challenge_id"
-    t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["calendar_id"], name: "index_users_on_calendar_id", using: :btree
-  add_index "users", ["challenge_id"], name: "index_users_on_challenge_id", using: :btree
-
   add_foreign_key "exercises", "calendars"
   add_foreign_key "exercises", "challenges"
-  add_foreign_key "exercises", "users"
   add_foreign_key "foods", "calendars"
   add_foreign_key "foods", "challenges"
-  add_foreign_key "foods", "users"
   add_foreign_key "photos", "calendars"
   add_foreign_key "photos", "challenges"
-  add_foreign_key "photos", "users"
-  add_foreign_key "users", "calendars"
-  add_foreign_key "users", "challenges"
 end
